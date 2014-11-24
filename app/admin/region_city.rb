@@ -13,7 +13,7 @@ ActiveAdmin.register RegionCity do
   sidebar :country, if: proc{ assigns[:region_country].present? }, priority: 1 do
     attributes_table_for assigns[:region_country] do
       row :id do
-        auto_link(assigns[:region_country])
+        auto_link(assigns[:region_country], assigns[:region_country].id)
       end
       row :name
     end
@@ -41,7 +41,7 @@ ActiveAdmin.register RegionCity do
     f.semantic_errors *f.object.errors.keys
     f.inputs do
       f.input :name
-      f.input :country, collection: RegionCountry
+      #f.input :country, collection: RegionCountry
       f.input :description
     end
     f.actions
