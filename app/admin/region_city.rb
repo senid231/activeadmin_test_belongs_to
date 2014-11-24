@@ -1,8 +1,8 @@
-ActiveAdmin.register RegionCity do
+ActiveAdmin.register RegionCity, as: 'City' do
   permit_params :name, :description, :country_id
 
   menu false
-  belongs_to :region_country, parent_class: RegionCountry
+  belongs_to :country, parent_class: RegionCountry
   navigation_menu :default
 
 
@@ -10,10 +10,10 @@ ActiveAdmin.register RegionCity do
   filter :id_eq
   filter :country_id, as: :select, collection: proc{ RegionCountry.all }
 
-  sidebar :country, if: proc{ assigns[:region_country].present? }, priority: 1 do
-    attributes_table_for assigns[:region_country] do
+  sidebar :country, if: proc{ assigns[:country].present? }, priority: 1 do
+    attributes_table_for assigns[:country] do
       row :id do
-        auto_link(assigns[:region_country], assigns[:region_country].id)
+        auto_link(assigns[:country], assigns[:country].id)
       end
       row :name
     end

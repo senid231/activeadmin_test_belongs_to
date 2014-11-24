@@ -1,4 +1,4 @@
-ActiveAdmin.register RegionCountry do
+ActiveAdmin.register RegionCountry, as: 'Country' do
   permit_params :name, :description
 
 
@@ -16,7 +16,7 @@ ActiveAdmin.register RegionCountry do
       row :name
       row :description
       row :cities do
-        link_to 'Cities', admin_region_country_region_cities_path(item)
+        link_to 'Cities', admin_country_cities_path(item)
       end
     end
   end
