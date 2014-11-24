@@ -1,8 +1,8 @@
 ActiveAdmin.register RegionCity, as: 'City' do
   permit_params :name, :description, :country_id
 
-  menu false
-  belongs_to :country, parent_class: RegionCountry
+  #menu false
+  belongs_to :country, parent_class: RegionCountry, optional: true
   navigation_menu :default
 
 
@@ -41,7 +41,9 @@ ActiveAdmin.register RegionCity, as: 'City' do
     f.semantic_errors *f.object.errors.keys
     f.inputs do
       f.input :name
-      #f.input :country, collection: RegionCountry
+      if assigns[:country].nil?
+        f.input :country_id, collection: RegionCountry
+      end
       f.input :description
     end
     f.actions
