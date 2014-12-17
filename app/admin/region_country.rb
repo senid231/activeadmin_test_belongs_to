@@ -4,30 +4,12 @@ ActiveAdmin.register RegionCountry, as: 'Country' do
 
   filter :id_eq
 
-  index do
-    id_column
-    column :name
-    column :description
-  end
-
-  show do |item|
-    attributes_table do
-      row :id
-      row :name
-      row :description
-      row :cities do
-        link_to 'Cities', admin_country_cities_path(item)
+  sidebar 'Links', only: [:show] do
+    ul do
+      li do
+        link_to 'Cities', admin_country_cities_path(country_id: resource.id)
       end
     end
-  end
-
-  form do |f|
-    f.semantic_errors *f.object.errors.keys
-    f.inputs do
-      f.input :name
-      f.input :description
-    end
-    f.actions
   end
 
 end
