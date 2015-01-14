@@ -7,4 +7,8 @@ ActiveAdmin.register RegionCity, as: 'City' do
 
   filter :id_eq
 
+  controller do
+    defaults collection_name: :region_cities
+  end
+
 end
